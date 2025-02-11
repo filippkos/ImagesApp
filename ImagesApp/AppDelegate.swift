@@ -12,8 +12,10 @@ import FirebaseCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let window = UIWindow()
-    private var coordinator: AppCoordinator?
+    private var flow: PhoneAppFlow?
 
+    private let services = ServiceContainer.shared
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -26,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Private
     
     private func prepareRootController() {
-        let navigationController = UINavigationController()
-        self.coordinator = AppCoordinator(navigationController: navigationController)
-        self.window.rootViewController = navigationController
+        
+        self.flow = PhoneAppFlow(presenter: .default, services: self.services)
+        self.window.rootViewController = flow?.flowNavigation
         self.window.makeKeyAndVisible()
     }
 }

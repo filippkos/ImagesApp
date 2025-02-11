@@ -12,8 +12,5 @@ protocol ViewModelEvent { }
 class BaseViewModel<Event: ViewModelEvent> {
     
     public var outputEvents: ((Event) -> ())?
-    
-    init() {
-    }
 }
 
