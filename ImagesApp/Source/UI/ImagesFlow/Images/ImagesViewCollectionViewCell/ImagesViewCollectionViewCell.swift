@@ -36,7 +36,7 @@ class ImagesViewCollectionViewCell: UICollectionViewCell {
     }
     
     override func updateConfiguration(using state: UICellConfigurationState) {
-        self.checkmark.isHidden = state.isSelected == true ? false : true
+        self.checkmark.isHidden = !state.isSelected
     }
     
     // MARK: -
@@ -46,6 +46,8 @@ class ImagesViewCollectionViewCell: UICollectionViewCell {
         self.checkmark.isHidden = true
         self.contentView.addSubview(self.imageView)
         self.contentView.addSubview(self.checkmark)
+        self.imageView.contentMode = .scaleAspectFill
+        self.imageView.clipsToBounds = true
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.checkmark.translatesAutoresizingMaskIntoConstraints = false
         self.prepareConstraints()

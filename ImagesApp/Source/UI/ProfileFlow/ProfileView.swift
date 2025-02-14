@@ -36,21 +36,21 @@ final class ProfileView: BaseView<ProfileViewModel, ProfileViewModelOutputEvent>
     
     private func prepareButton() {
         self.logoutButton.setTitle("Log Out", for: .normal)
-        self.logoutButton.frame = CGRect(x: 100, y: 200, width: 150, height: 50)
-        self.logoutButton.backgroundColor = .brown
+        self.logoutButton.backgroundColor = .blue
+        self.logoutButton.layer.cornerRadius = 10
+        self.logoutButton.translatesAutoresizingMaskIntoConstraints = false
         self.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
     }
     
     private func prepareView() {
         self.view.addSubview(self.stackView)
-        self.stackView.backgroundColor = .cyan
         self.stackView.axis = .vertical
         self.stackView.spacing = 10
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.loginField.titleText = "Login"
+        self.loginField.placeholder = "Login"
         self.stackView.addArrangedSubview(self.loginField)
         self.stackView.addArrangedSubview(UIView())
-        self.uidField.titleText = "UID"
+        self.uidField.placeholder = "UID"
         self.stackView.addArrangedSubview(self.uidField)
         self.stackView.addArrangedSubview(UIView())
         self.stackView.addArrangedSubview(self.logoutButton)
@@ -66,10 +66,14 @@ final class ProfileView: BaseView<ProfileViewModel, ProfileViewModelOutputEvent>
     
     private func prepareConstraints() {
         NSLayoutConstraint.activate([
-            self.stackView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
-            self.stackView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
+            self.stackView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 32),
+            self.stackView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -32),
             self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            self.logoutButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 

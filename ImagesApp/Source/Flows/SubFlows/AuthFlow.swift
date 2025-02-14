@@ -41,17 +41,37 @@ class AuthFlow: NavigationControllerContainer<NavigationControllerDefaultPresent
     
     private func prepareLoginController() {
         let viewModel = LoginViewModel()
-        let loginController = LoginView(viewModel: viewModel)
+        let view = LoginView(viewModel: viewModel)
         viewModel.outputEvents = { [weak self] event in
             self?.handle(event: event)
         }
-        self.flowNavigation.setViewControllers([loginController], animated: false)
+        self.flowNavigation.setViewControllers([view], animated: false)
     }
     
     private func handle(event: LoginViewModelOutputEvent) {
         switch event {
         case .success:
             self.outputEvents?(.setImagesFlow)
+        case .createAccount:
+            self.pushRegisterController()
+        }
+    }
+    
+    private func pushRegisterController() {
+        let viewModel = RegisterViewModel()
+        let view = RegisterView(viewModel: viewModel)
+        viewModel.outputEvents = { [weak self] event in
+            self?.handle(event: event)
+        }
+        self.flowNavigation.pushViewController(view, animated: false)
+    }
+    
+    private func handle(event: RegisterViewModelOutputEvent) {
+        switch event {
+        case .registered:
+            self.outputEvents?(.setImagesFlow)
+        case .haveAnAccount:
+            self.prepareLoginController()
         }
     }
 }

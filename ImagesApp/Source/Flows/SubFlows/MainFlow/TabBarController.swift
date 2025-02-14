@@ -49,12 +49,12 @@ final class TabBarController: UITabBarController {
         
         imagesFlow.tabBarItem = UITabBarItem(
             title: "Images",
-            image: UIImage(systemName: "timer"),
+            image: UIImage(systemName: "photo"),
             selectedImage: nil
         )
         profileFlow.tabBarItem = UITabBarItem(
             title: "Profile",
-            image: UIImage(systemName: "mappin.circle"),
+            image: UIImage(systemName: "person"),
             selectedImage: nil
         )
         

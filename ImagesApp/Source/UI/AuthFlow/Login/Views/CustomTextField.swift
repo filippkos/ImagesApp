@@ -10,29 +10,29 @@ import UIKit
 class CustomTextField: UIView {
     
     var customBackgroundColor: UIColor? {
-        didSet { backgroundColor = customBackgroundColor }
+        didSet { backgroundColor = self.customBackgroundColor }
     }
     
     var borderColor: UIColor = .black {
-        didSet { layer.borderColor = borderColor.cgColor }
+        didSet { layer.borderColor = self.borderColor.cgColor }
     }
     
     var borderWidth: CGFloat = 1.0 {
-        didSet { layer.borderWidth = borderWidth }
+        didSet { layer.borderWidth = self.borderWidth }
     }
     
     var cornerRadius: CGFloat = 8.0 {
-        didSet { layer.cornerRadius = cornerRadius }
+        didSet { layer.cornerRadius = self.cornerRadius }
     }
     
     var customTextColor: UIColor = .black {
-        didSet { self.textField.textColor = customTextColor }
+        didSet { self.textField.textColor = self.customTextColor }
     }
     
     var customFont: UIFont = UIFont.systemFont(ofSize: 16) {
-        didSet { self.textField.font = customFont }
+        didSet { self.textField.font = self.customFont }
     }
-    
+   
     var text: String? {
         get { self.textField.text }
         set { self.textField.text = newValue }
@@ -42,58 +42,46 @@ class CustomTextField: UIView {
     
     private let textField: UITextField = UITextField()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        label.textColor = .gray
-        label.backgroundColor = .clear
-        label.isHidden = true
-        
-        return label
-    }()
-    
-    var titleText: String? {
-        didSet {
-            titleLabel.text = titleText
-            titleLabel.isHidden = titleText == nil
-        }
+    var placeholder: String? {
+        didSet { self.textField.placeholder = self.placeholder }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupTextField()
+        
+        self.setupView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupTextField()
+        
+        self.setupView()
     }
     
-    private func setupTextField() {
-        self.textField.backgroundColor = customBackgroundColor
-        self.textField.layer.borderColor = borderColor.cgColor
-        self.textField.layer.borderWidth = borderWidth
-        self.textField.layer.cornerRadius = cornerRadius
-        self.textField.textColor = customTextColor
-        self.textField.font = customFont
+    private func setupView() {
+        self.layer.borderColor = self.borderColor.cgColor
+        self.layer.borderWidth = self.borderWidth
+        self.layer.cornerRadius = self.cornerRadius
+        self.backgroundColor = self.customBackgroundColor
+
+        self.textField.font = self.customFont
+        self.textField.textColor = self.customTextColor
         self.textField.textAlignment = .left
-        self.addSubview(titleLabel)
-        self.addSubview(textField)
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.textField.backgroundColor = .clear
         self.textField.translatesAutoresizingMaskIntoConstraints = false
+
+        self.addSubview(self.textField)
         self.setupConstraints()
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 50),
-            self.titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            self.titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            self.titleLabel.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: 0),
-            self.titleLabel.widthAnchor.constraint(equalToConstant: 100),
-            self.textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.heightAnchor.constraint(equalToConstant: 60),
+            
+            self.textField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.padding.top),
+            self.textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.padding.left),
+            self.textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.padding.right),
+            self.textField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.padding.bottom)
         ])
     }
 }

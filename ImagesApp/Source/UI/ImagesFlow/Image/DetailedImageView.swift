@@ -14,32 +14,21 @@ final class DetailedImageView: BaseView<DetailedImageViewModel, DetailedImageVie
     
     let imageView = UIImageView()
     let stackView = UIStackView()
-    let square = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.prepareView()
+        self.prepareConstraints()
     }
     
     private func prepareView() {
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.square.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        self.square.backgroundColor = .red
-        self.stackView.backgroundColor = .orange
-        self.view.backgroundColor = .white
-
         self.stackView.axis = .vertical
-        
+        self.view.backgroundColor = .white
         self.view.addSubview(self.stackView)
-
         self.stackView.addArrangedSubview(self.imageView)
-        self.stackView.addArrangedSubview(self.square)
-
-        self.stackView.distribution = .fillProportionally
-        self.prepareConstraints()
+        self.imageView.contentMode = .scaleAspectFit
     }
     
     func configure(with image: UIImage) {
@@ -48,14 +37,10 @@ final class DetailedImageView: BaseView<DetailedImageViewModel, DetailedImageVie
     
     private func prepareConstraints() {
         NSLayoutConstraint.activate([
-            self.imageView.heightAnchor.constraint(equalTo: self.view.widthAnchor),
             self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.stackView.bottomAnchor.constraint(equalTo: self.square.topAnchor),
-            self.square.widthAnchor.constraint(equalToConstant: 100),
-            self.square.heightAnchor.constraint(equalToConstant: 100),
-            self.square.rightAnchor.constraint(equalTo: self.stackView.rightAnchor)
+            self.stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

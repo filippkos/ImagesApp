@@ -1,14 +1,14 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  ImagesApp
 //
-//  Created by Filipp Kosenko on 30.01.2025.
+//  Created by Filipp Kosenko on 12.02.2025.
 //
 
 import UIKit
 import FirebaseAuth
 
-final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
+final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEvent> {
     
     // MARK: -
     // MARK: Variables
@@ -19,9 +19,10 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
     let stackView = UIStackView()
     let loginField = CustomTextField()
     let passwordField = CustomTextField()
-    let loginButton = UIButton()
+    let confirmPasswordField = CustomTextField()
+    let registerButton = UIButton()
     let labelContainer = UIView()
-    let createAccountLabel = UILabel()
+    let haveAnAccountLabel = UILabel()
     
     // MARK: -
     // MARK: Life Cycle
@@ -40,7 +41,7 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         self.prepareTitle()
         self.prepareView()
         self.prepareButton()
-        self.prepareCreateAccountLabel()
+        self.prepareHaveAnAccountLabel()
         self.prepareConstraints()
     }
     
@@ -52,46 +53,48 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         self.titleStack.spacing = 26
         self.titleStack.alignment = .center
         self.titleStack.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.text = "Login here"
+        self.titleLabel.text = "Create Account"
         self.titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
-        self.descriptionLabel.text = "Welcome back you’ve been missed!"
+        self.descriptionLabel.text = "Create an account"
         self.descriptionLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         self.titleStack.addArrangedSubview(self.titleLabel)
         self.titleStack.addArrangedSubview(self.descriptionLabel)
     }
     
     private func prepareView() {
-        self.view.addSubview(self.titleStack)
         self.view.addSubview(self.stackView)
+        self.view.addSubview(self.titleStack)
         self.view.backgroundColor = .white
         self.stackView.backgroundColor = .white
         self.stackView.axis = .vertical
         self.stackView.spacing = 30
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.loginField.placeholder = "Email"
+        self.loginField.placeholder = "Login"
         self.stackView.addArrangedSubview(self.loginField)
         self.passwordField.placeholder = "Password"
         self.stackView.addArrangedSubview(self.passwordField)
-        self.stackView.addArrangedSubview(self.loginButton)
+        self.confirmPasswordField.placeholder = "Confirm Password"
+        self.stackView.addArrangedSubview(self.confirmPasswordField)
+        self.stackView.addArrangedSubview(self.registerButton)
         self.stackView.addArrangedSubview(self.labelContainer)
         self.stackView.addArrangedSubview(UIView())
     }
     
     private func prepareButton() {
-        self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.backgroundColor = .blue
-        self.loginButton.layer.cornerRadius = 10
-        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
-        self.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        self.registerButton.setTitle("Register", for: .normal)
+        self.registerButton.backgroundColor = .blue
+        self.registerButton.layer.cornerRadius = 10
+        self.registerButton.translatesAutoresizingMaskIntoConstraints = false
+        self.registerButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    private func prepareCreateAccountLabel() {
-        self.createAccountLabel.text = "Create new account"
-        self.createAccountLabel.isUserInteractionEnabled = true
-        self.createAccountLabel.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(createAccountLabelTapped(sender:)))
-        self.createAccountLabel.addGestureRecognizer(tap)
-        self.labelContainer.addSubview(self.createAccountLabel)
+    private func prepareHaveAnAccountLabel() {
+        self.haveAnAccountLabel.text = "Already have an account"
+        self.haveAnAccountLabel.isUserInteractionEnabled = true
+        self.haveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(haveAnAccountLabelTapped(sender:)))
+        self.haveAnAccountLabel.addGestureRecognizer(tap)
+        self.labelContainer.addSubview(self.haveAnAccountLabel)
     }
     
     private func prepareConstraints() {
@@ -109,25 +112,25 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         ])
         
         NSLayoutConstraint.activate([
-            self.loginButton.heightAnchor.constraint(equalToConstant: 60)
+            self.registerButton.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         NSLayoutConstraint.activate([
-            self.createAccountLabel.centerXAnchor.constraint(equalTo: self.labelContainer.centerXAnchor),
-            self.createAccountLabel.centerYAnchor.constraint(equalTo: self.labelContainer.centerYAnchor),
+            self.haveAnAccountLabel.centerXAnchor.constraint(equalTo: self.labelContainer.centerXAnchor),
+            self.haveAnAccountLabel.centerYAnchor.constraint(equalTo: self.labelContainer.centerYAnchor),
             self.labelContainer.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 
-    @objc func loginButtonTapped() {
+    @objc func buttonTapped() {
         let login = self.loginField.text
         let password = self.passwordField.text
         
-        self.viewModel.handleLogin(login: login, password: password)
+        self.viewModel.handleRegister(login: login, password: password)
     }
     
-    @objc func createAccountLabelTapped(sender:UITapGestureRecognizer) {
-        self.viewModel.handleCreateAccount()
+    @objc func haveAnAccountLabelTapped(sender:UITapGestureRecognizer) {
+        self.viewModel.handleHaveAnAccount()
     }
     
     private func handleInput(event: LoginViewInputEvent) {
@@ -146,7 +149,6 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
 //            self.passwordField.error = error
         case .generalError(let error):
             self.showWarning(message: error)
-
         }
     }
 }

@@ -30,6 +30,12 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         self.prepareNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.deselectAllCells()
+    }
+    
     // MARK: -
     // MARK: Private
     
@@ -65,30 +71,15 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         
         var configuration = UIButton.Configuration.filled()
         configuration.cornerStyle = .capsule
-        let selectButton = UIButton(configuration: configuration, primaryAction: UIAction(handler: {_ in
-            self.isSelectionEnabled = !self.isSelectionEnabled
-            self.collectionView.allowsMultipleSelection = self.isSelectionEnabled
-        }))
+        let selectButton = UIButton(configuration: configuration)
         selectButton.setTitle("Select", for: .normal)
+        selectButton.addTarget(self, action: #selector(toggleSelectionMode), for: .touchUpInside)
         
         self.navigationItem.setRightBarButtonItems([addPhotoItem, deletePhotoItem, selectButton.toBarButtonItem()], animated: true)
     }
     
-    @objc private func showPicker(_ sender: UITapGestureRecognizer?) {
-        ImagePickerManager().pickImage(self, { image in
-            
-            self.viewModel.uploadImage(image: image)
-        })
-    }
-    
-    @objc private func deleteImage(_ sender: UITapGestureRecognizer?) {
-        guard let name = self.selectedItemName else { return }
-        self.viewModel.deleteImage(name: name)
-    }
-    
     private func prepareView() {
-        self.view.backgroundColor = .green
-        self.collectionView.backgroundColor = .red
+        self.collectionView.backgroundColor = .white
         self.collectionView.allowsMultipleSelection = true
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.collectionView)
@@ -119,6 +110,36 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         ])
     }
     
+    private func deselectAllCells() {
+        guard let indexPaths = self.collectionView.indexPathsForSelectedItems else { return }
+        
+        for indexPath in indexPaths {
+            self.collectionView.deselectItem(at: indexPath, animated: false)
+        }
+    }
+    
+    @objc private func toggleSelectionMode() {
+        self.isSelectionEnabled.toggle()
+        self.collectionView.allowsMultipleSelection = self.isSelectionEnabled
+        
+        if let selectButton = self.navigationItem.rightBarButtonItems?.last?.customView as? UIButton {
+            selectButton.setTitle(self.isSelectionEnabled ? "Cancel" : "Select", for: .normal)
+        }
+        
+        self.deselectAllCells()
+    }
+    
+    @objc private func showPicker(_ sender: UITapGestureRecognizer?) {
+        ImagePickerManager().pickImage(self, { image in
+            self.viewModel.uploadImage(image: image)
+        })
+    }
+    
+    @objc private func deleteImage(_ sender: UITapGestureRecognizer?) {
+        guard let name = self.selectedItemName else { return }
+        self.viewModel.deleteImage(name: name)
+    }
+    
     // MARK: -
     // MARK: UICollectionViewDataSource
     
@@ -134,16 +155,16 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    // MARK: -
+    // MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ImagesViewCollectionViewCell else { return false }
         if self.isSelectionEnabled {
-            guard let cell = collectionView.cellForItem(at: indexPath) else { return }
             self.selectedItemName = self.viewModel.images?[indexPath.row].name
         } else {
             self.viewModel.outputEvents?(.showDetailed(image: self.viewModel.images?[indexPath.row].image ?? UIImage()))
         }
+        return self.isSelectionEnabled
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        return self.isSelectionEnabled
-//    }
 }

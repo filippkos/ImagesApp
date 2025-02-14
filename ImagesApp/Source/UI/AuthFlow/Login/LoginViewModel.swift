@@ -10,6 +10,7 @@ import FirebaseAuth
 
 enum LoginViewModelOutputEvent: ViewModelEvent {
     case success
+    case createAccount
 }
 
 enum LoginViewInputEvent {
@@ -38,6 +39,10 @@ final class LoginViewModel: BaseViewModel<LoginViewModelOutputEvent> {
         if let login, let password, inputIsValid {
             self.loginRequest(login: login, password: password)
         }
+    }
+    
+    func handleCreateAccount() {
+        self.outputEvents?(.createAccount)
     }
     
     // MARK: -
