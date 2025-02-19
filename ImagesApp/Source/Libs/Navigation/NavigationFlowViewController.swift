@@ -9,13 +9,15 @@ import UIKit
 
 class NavigationFlowViewController<Presenter: NavigationControllerPresenter>: UINavigationController {
 
-    // MARK: - Properties
+    // MARK: -
+    // MARK: Variables
     
     var flowNavigation: UINavigationController { self }
     
     let presenter: Presenter
 
-    // MARK: - Initializations and Deallocations
+    // MARK: -
+    // MARK: Init
     
     init(presenter: Presenter) {
         self.presenter = presenter

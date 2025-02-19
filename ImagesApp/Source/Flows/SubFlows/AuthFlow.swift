@@ -11,21 +11,9 @@ enum AuthFlowOutputEvent {
     case setImagesFlow
 }
 
-class AuthFlow: NavigationControllerContainer<NavigationControllerDefaultPresenter> {
+class AuthFlow: NavigationControllerContainer<NavigationControllerAuthPresenter> {
     
     public var outputEvents: ((AuthFlowOutputEvent) -> ())?
-    
-    // MARK: -
-    // MARK: Init
-    
-    override init(presenter: NavigationControllerDefaultPresenter) {
-        super.init(presenter: presenter)
-        self.prepareLoginController()
-    }
-    
-    @MainActor required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: -
     // MARK: Life Cycle
@@ -34,6 +22,12 @@ class AuthFlow: NavigationControllerContainer<NavigationControllerDefaultPresent
         super.viewDidLoad()
         
         self.flowNavigation.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func setup() {
+        super.setup()
+        
+        self.prepareLoginController()
     }
     
     // MARK: -
@@ -45,7 +39,7 @@ class AuthFlow: NavigationControllerContainer<NavigationControllerDefaultPresent
         viewModel.outputEvents = { [weak self] event in
             self?.handle(event: event)
         }
-        self.flowNavigation.setViewControllers([view], animated: false)
+        self.flowNavigation.setViewControllers([view], animated: true)
     }
     
     private func handle(event: LoginViewModelOutputEvent) {
@@ -63,7 +57,7 @@ class AuthFlow: NavigationControllerContainer<NavigationControllerDefaultPresent
         viewModel.outputEvents = { [weak self] event in
             self?.handle(event: event)
         }
-        self.flowNavigation.pushViewController(view, animated: false)
+        self.flowNavigation.pushViewController(view, animated: true)
     }
     
     private func handle(event: RegisterViewModelOutputEvent) {

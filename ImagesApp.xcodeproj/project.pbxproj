@@ -24,6 +24,9 @@
 		2257BDD82D4B82A600CDAB90 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDD72D4B820800CDAB90 /* CustomTextField.swift */; };
 		2257BDDB2D4B89C400CDAB90 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDDA2D4B89B900CDAB90 /* UIButton+Extension.swift */; };
 		2257BDDD2D4B89EB00CDAB90 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDDC2D4B89E300CDAB90 /* UIImage+Extension.swift */; };
+		226EC1142D63466A0079748B /* AuthFlowTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1132D6346650079748B /* AuthFlowTransition.swift */; };
+		226EC1182D6346D00079748B /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1172D6346C50079748B /* AuthPresenter.swift */; };
+		226EC11A2D634B380079748B /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1192D634B300079748B /* NavigationDelegate.swift */; };
 		22856BA92B80F94D00DE5975 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22856BA82B80F94D00DE5975 /* AppDelegate.swift */; };
 		22856BB22B80F94F00DE5975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22856BB12B80F94F00DE5975 /* Assets.xcassets */; };
 		22856BB52B80F94F00DE5975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22856BB32B80F94F00DE5975 /* LaunchScreen.storyboard */; };
@@ -67,6 +70,9 @@
 		2257BDD72D4B820800CDAB90 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2257BDDA2D4B89B900CDAB90 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		2257BDDC2D4B89E300CDAB90 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		226EC1132D6346650079748B /* AuthFlowTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTransition.swift; sourceTree = "<group>"; };
+		226EC1172D6346C50079748B /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		226EC1192D634B300079748B /* NavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
 		22856BA52B80F94D00DE5975 /* ImagesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22856BA82B80F94D00DE5975 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22856BB12B80F94F00DE5975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +227,15 @@
 				2257BDD72D4B820800CDAB90 /* CustomTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		226EC1122D6346520079748B /* FlowPresenters */ = {
+			isa = PBXGroup;
+			children = (
+				226EC1172D6346C50079748B /* AuthPresenter.swift */,
+				226EC1132D6346650079748B /* AuthFlowTransition.swift */,
+			);
+			path = FlowPresenters;
 			sourceTree = "<group>";
 		};
 		22856B9C2B80F94D00DE5975 = {
@@ -383,7 +398,9 @@
 		22BE07822D5A0C5B00735782 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				226EC1122D6346520079748B /* FlowPresenters */,
 				22BE07872D5A141600735782 /* NavigationControllerPresenter */,
+				226EC1192D634B300079748B /* NavigationDelegate.swift */,
 				22BE07802D590B5E00735782 /* NavigationControllerContainer.swift */,
 				22BE07892D5A143100735782 /* NavigationFlowViewController.swift */,
 			);
@@ -393,8 +410,8 @@
 		22BE07872D5A141600735782 /* NavigationControllerPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				22BE07852D5A0D2600735782 /* NavigationControllerDefaultPresenter.swift */,
 				22BE07832D5A0C7C00735782 /* NavigationControllerPresenter.swift */,
+				22BE07852D5A0D2600735782 /* NavigationControllerDefaultPresenter.swift */,
 			);
 			path = NavigationControllerPresenter;
 			sourceTree = "<group>";
@@ -546,9 +563,11 @@
 				224335B12B82739700E82E10 /* ImageModel.swift in Sources */,
 				22BE07932D5D2EE600735782 /* RegisterViewModel.swift in Sources */,
 				2257BDDB2D4B89C400CDAB90 /* UIButton+Extension.swift in Sources */,
+				226EC11A2D634B380079748B /* NavigationDelegate.swift in Sources */,
 				224335B82B88C47F00E82E10 /* ImagePicker.swift in Sources */,
 				224335BC2B89008100E82E10 /* DetailedImageView.swift in Sources */,
 				224335C32B8CB5FA00E82E10 /* AnalyticsReporter.swift in Sources */,
+				226EC1182D6346D00079748B /* AuthPresenter.swift in Sources */,
 				22856BC02B80FA1A00DE5975 /* ImagesFlow.swift in Sources */,
 				22BE07912D5D2EDC00735782 /* RegisterView.swift in Sources */,
 				22BE078C2D5BA1CD00735782 /* ServiceContainer.swift in Sources */,
@@ -573,6 +592,7 @@
 				22BE076C2D53ED7200735782 /* AuthFlow.swift in Sources */,
 				22856BC62B80FB7200DE5975 /* BaseView.swift in Sources */,
 				22BE07722D551AA900735782 /* TabBarController.swift in Sources */,
+				226EC1142D63466A0079748B /* AuthFlowTransition.swift in Sources */,
 				2257BDD12D4B81A900CDAB90 /* LoginView.swift in Sources */,
 				22BE07812D590B6100735782 /* NavigationControllerContainer.swift in Sources */,
 				224335C02B8900A700E82E10 /* DetailedImageViewModel.swift in Sources */,

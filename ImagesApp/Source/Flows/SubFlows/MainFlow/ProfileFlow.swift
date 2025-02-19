@@ -49,7 +49,7 @@ class ProfileFlow: NavigationControllerContainer<NavigationControllerDefaultPres
     }
     
     private func pushAuthFlow() {
-        let flow = AuthFlow(presenter: .default)
+        let flow = AuthFlow(presenter: .auth)
         self.flowNavigation.setViewControllers([flow], animated: true)
     }
 }

@@ -63,7 +63,7 @@ class PhoneAppFlow: NavigationFlowViewController<NavigationControllerDefaultPres
     }
     
     private func showAuthFlow() {
-        let flow = AuthFlow(presenter: .default)
+        let flow = AuthFlow(presenter: .auth)
         flow.outputEvents = { [weak self] event in
             self?.handle(event: event)
         }

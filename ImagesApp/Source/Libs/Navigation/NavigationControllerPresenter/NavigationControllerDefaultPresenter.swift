@@ -9,13 +9,17 @@ import UIKit
 
 class NavigationControllerDefaultPresenter: NavigationControllerPresenter {
     
+    // MARK: -
+    // MARK: Variables
+    
     static var `default`: NavigationControllerDefaultPresenter {
         return NavigationControllerDefaultPresenter()
     }
     
     let controllerAnimatedTransitioning: NavigationCoordinatorAnimatorType?
     
-    // MARK: - Initializations and Deallocations
+    // MARK: -
+    // MARK: Init
     
     init() {
         self.controllerAnimatedTransitioning = nil
