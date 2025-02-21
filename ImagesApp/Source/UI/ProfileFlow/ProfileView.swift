@@ -36,7 +36,7 @@ final class ProfileView: BaseView<ProfileViewModel, ProfileViewModelOutputEvent>
     
     private func prepareButton() {
         self.logoutButton.setTitle("Log Out", for: .normal)
-        self.logoutButton.backgroundColor = .blue
+        self.logoutButton.backgroundColor = UIColor(named: "Colors/surface/primary")
         self.logoutButton.layer.cornerRadius = 10
         self.logoutButton.translatesAutoresizingMaskIntoConstraints = false
         self.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)

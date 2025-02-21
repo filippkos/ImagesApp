@@ -47,6 +47,9 @@ final class TabBarController: UITabBarController {
         let imagesFlow = ImagesFlow(presenter: .default)
         let profileFlow = ProfileFlow(presenter: .default, services: self.services)
         
+        self.tabBar.tintColor = UIColor(named: "Colors/surface/primary")
+        self.tabBar.unselectedItemTintColor = UIColor.gray
+        
         imagesFlow.tabBarItem = UITabBarItem(
             title: "Images",
             image: UIImage(systemName: "photo"),

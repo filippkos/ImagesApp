@@ -46,6 +46,12 @@ final class ImagesViewModel: BaseViewModel<ImagesViewModelOutputEvent> {
         })
     }
     
+    func deleteImages(names: Set<String>) {
+        names.forEach {name in
+            deleteImage(name: name)
+        }
+    }
+    
     func deleteImage(name: String) {
         Task {
             do {

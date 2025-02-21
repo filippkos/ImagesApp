@@ -79,7 +79,7 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
     
     private func prepareButton() {
         self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.backgroundColor = .blue
+        self.loginButton.backgroundColor = UIColor(named: "Colors/surface/primary")
         self.loginButton.layer.cornerRadius = 10
         self.loginButton.translatesAutoresizingMaskIntoConstraints = false
         self.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)

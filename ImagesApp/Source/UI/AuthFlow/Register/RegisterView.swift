@@ -82,7 +82,7 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
     
     private func prepareButton() {
         self.registerButton.setTitle("Register", for: .normal)
-        self.registerButton.backgroundColor = .blue
+        self.registerButton.backgroundColor = UIColor(named: "Colors/surface/primary")
         self.registerButton.layer.cornerRadius = 10
         self.registerButton.translatesAutoresizingMaskIntoConstraints = false
         self.registerButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)

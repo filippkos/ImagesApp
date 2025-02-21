@@ -15,7 +15,7 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
     // MARK: Variables
 
     private var collectionView = UICollectionView(frame: .null, collectionViewLayout: UICollectionViewLayout())
-    private var selectedItemName: String?
+    private var selectedItemNames: Set<String> = Set<String>()
     private var isSelectionEnabled = false
     
     // MARK: -
@@ -73,8 +73,9 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         configuration.cornerStyle = .capsule
         let selectButton = UIButton(configuration: configuration)
         selectButton.setTitle("Select", for: .normal)
+        selectButton.tintColor = UIColor(named: "Colors/surface/primary")
         selectButton.addTarget(self, action: #selector(toggleSelectionMode), for: .touchUpInside)
-        
+        selectButton.frame.size.width = 100
         self.navigationItem.setRightBarButtonItems([addPhotoItem, deletePhotoItem, selectButton.toBarButtonItem()], animated: true)
     }
     
@@ -98,7 +99,6 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
         self.collectionView.alwaysBounceVertical = true
-        
     }
     
     private func prepareConstraints() {
@@ -136,8 +136,10 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
     }
     
     @objc private func deleteImage(_ sender: UITapGestureRecognizer?) {
-        guard let name = self.selectedItemName else { return }
-        self.viewModel.deleteImage(name: name)
+        if !self.selectedItemNames.isEmpty {
+            self.viewModel.deleteImages(names: self.selectedItemNames)
+            self.toggleSelectionMode()
+        }
     }
     
     // MARK: -
@@ -161,9 +163,19 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ImagesViewCollectionViewCell else { return false }
         if self.isSelectionEnabled {
-            self.selectedItemName = self.viewModel.images?[indexPath.row].name
+            guard let name = self.viewModel.images?[indexPath.row].name else { return self.isSelectionEnabled }
+            self.selectedItemNames.insert(name)
         } else {
             self.viewModel.outputEvents?(.showDetailed(image: self.viewModel.images?[indexPath.row].image ?? UIImage()))
+        }
+        
+        return self.isSelectionEnabled
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        if self.isSelectionEnabled {
+            guard let name = self.viewModel.images?[indexPath.row].name else { return self.isSelectionEnabled }
+            self.selectedItemNames.remove(name)
         }
         return self.isSelectionEnabled
     }
