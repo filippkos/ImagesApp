@@ -27,6 +27,7 @@
 		226EC1142D63466A0079748B /* AuthFlowTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1132D6346650079748B /* AuthFlowTransition.swift */; };
 		226EC1182D6346D00079748B /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1172D6346C50079748B /* AuthPresenter.swift */; };
 		226EC11A2D634B380079748B /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1192D634B300079748B /* NavigationDelegate.swift */; };
+		226EC1302D6903020079748B /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC12F2D6902EF0079748B /* EmailValidator.swift */; };
 		22856BA92B80F94D00DE5975 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22856BA82B80F94D00DE5975 /* AppDelegate.swift */; };
 		22856BB22B80F94F00DE5975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22856BB12B80F94F00DE5975 /* Assets.xcassets */; };
 		22856BB52B80F94F00DE5975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22856BB32B80F94F00DE5975 /* LaunchScreen.storyboard */; };
@@ -73,6 +74,7 @@
 		226EC1132D6346650079748B /* AuthFlowTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTransition.swift; sourceTree = "<group>"; };
 		226EC1172D6346C50079748B /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
 		226EC1192D634B300079748B /* NavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
+		226EC12F2D6902EF0079748B /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		22856BA52B80F94D00DE5975 /* ImagesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22856BA82B80F94D00DE5975 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22856BB12B80F94F00DE5975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		224335B22B83DCDE00E82E10 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				226EC12E2D6902E40079748B /* Validators */,
 				22BE078B2D5BA1C700735782 /* ServiceContainer.swift */,
 				224335C12B8CB5CD00E82E10 /* AnalyticsReporter */,
 				224335B62B88C21900E82E10 /* ImagePicker */,
@@ -236,6 +239,14 @@
 				226EC1132D6346650079748B /* AuthFlowTransition.swift */,
 			);
 			path = FlowPresenters;
+			sourceTree = "<group>";
+		};
+		226EC12E2D6902E40079748B /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				226EC12F2D6902EF0079748B /* EmailValidator.swift */,
+			);
+			path = Validators;
 			sourceTree = "<group>";
 		};
 		22856B9C2B80F94D00DE5975 = {
@@ -590,6 +601,7 @@
 				22856BC22B80FB3700DE5975 /* ImagesView.swift in Sources */,
 				22BE07862D5A0D4900735782 /* NavigationControllerDefaultPresenter.swift in Sources */,
 				22BE076C2D53ED7200735782 /* AuthFlow.swift in Sources */,
+				226EC1302D6903020079748B /* EmailValidator.swift in Sources */,
 				22856BC62B80FB7200DE5975 /* BaseView.swift in Sources */,
 				22BE07722D551AA900735782 /* TabBarController.swift in Sources */,
 				226EC1142D63466A0079748B /* AuthFlowTransition.swift in Sources */,

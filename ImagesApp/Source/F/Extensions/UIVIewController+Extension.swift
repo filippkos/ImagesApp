@@ -41,4 +41,25 @@ public extension UIViewController {
         let preferred = actionIsPreferred ? action : nil
         self.showAlert(title: title, message: message, actions: [action], preferredAction: preferred)
     }
+    
+    func presentConfirmationAlert(
+        title: String,
+        message: String,
+        confirmTitle: String = "Да",
+        cancelTitle: String = "Нет",
+        confirmHandler: @escaping () -> Void
+    ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: confirmTitle, style: .default) { _ in
+            confirmHandler()
+        }
+        
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
+    }
 }

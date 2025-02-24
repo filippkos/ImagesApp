@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import FirebaseAuth
 
 final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
@@ -120,10 +122,10 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
     }
 
     @objc func loginButtonTapped() {
-        let login = self.loginField.text
+        let email = self.loginField.text
         let password = self.passwordField.text
         
-        self.viewModel.handleLogin(login: login, password: password)
+        self.viewModel.handleLogin(email: email, password: password)
     }
     
     @objc func createAccountLabelTapped(sender:UITapGestureRecognizer) {
@@ -139,8 +141,7 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
             return
 //            self.unlock()
         case .emailError(let error):
-            return
-//            self.loginField.error = error
+            self.loginField.text = error
         case .passwordError(let error):
             return
 //            self.passwordField.error = error

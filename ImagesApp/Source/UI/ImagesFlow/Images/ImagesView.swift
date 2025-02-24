@@ -65,7 +65,7 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
             image: UIImage(systemName: "trash"),
             style: .done,
             target: self,
-            action: #selector(self.deleteImage(_:))
+            action: #selector(self.handleDelete(_:))
         )
         deletePhotoItem.tintColor = .black
         
@@ -135,11 +135,20 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         })
     }
     
-    @objc private func deleteImage(_ sender: UITapGestureRecognizer?) {
+    @objc private func handleDelete(_ sender: UITapGestureRecognizer?) {
         if !self.selectedItemNames.isEmpty {
-            self.viewModel.deleteImages(names: self.selectedItemNames)
-            self.toggleSelectionMode()
+            self.presentConfirmationAlert(title: "Attention", message: alertMessage(), confirmHandler: {
+                self.viewModel.deleteImages(names: self.selectedItemNames)
+                self.toggleSelectionMode()
+            })
         }
+    }
+    
+    func alertMessage() -> String {
+        let ending = self.selectedItemNames.count == 1
+        ? "\(self.selectedItemNames.first ?? "") image"
+        : "\(self.selectedItemNames.count) images"
+        return "Are you sure you want to delete " + ending + "?"
     }
     
     // MARK: -

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import FirebaseAuth
 
 enum LoginViewModelOutputEvent: ViewModelEvent {
@@ -23,21 +25,19 @@ enum LoginViewInputEvent {
 
 final class LoginViewModel: BaseViewModel<LoginViewModelOutputEvent> {
     
-    func handleLogin(login: String?, password: String?) {
+    
+    var viewInputEvent = PublishRelay<LoginViewInputEvent>()
+    
+    func handleLogin(email: String?, password: String?) {
         var inputIsValid = true
-//
-//        if let email, EmailValidator.isValid(email) { } else {
-//            inputIsValid = false
-//            self.viewInput.accept(.emailError(L10n.Validation.emailIncorrect))
-//        }
-//
-//        if let password, PasswordValidator.isValid(password) { } else {
-//            inputIsValid = false
-//            self.viewInput.accept(.passwordError(L10n.Validation.passwordLength))
-//        }
 
-        if let login, let password, inputIsValid {
-            self.loginRequest(login: login, password: password)
+        if let email, EmailValidator.isValid(email) { } else {
+            inputIsValid = false
+            self.viewInputEvent.accept(.emailError("Incorrect email"))
+        }
+
+        if let email, let password, inputIsValid {
+            self.loginRequest(email: email, password: password)
         }
     }
     
@@ -48,8 +48,8 @@ final class LoginViewModel: BaseViewModel<LoginViewModelOutputEvent> {
     // MARK: -
     // MARK: Private
     
-    private func loginRequest(login: String, password: String) {
-        Auth.auth().signIn(withEmail: login, password: password) { [weak self] authResult, error in
+    private func loginRequest(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
               
             if let error = error {
