@@ -17,7 +17,7 @@ final class RegisterViewModel: BaseViewModel<RegisterViewModelOutputEvent> {
     
     func handleRegister(login: String?, password: String?) {
         var inputIsValid = true
-//
+
 //        if let email, EmailValidator.isValid(email) { } else {
 //            inputIsValid = false
 //            self.viewInput.accept(.emailError(L10n.Validation.emailIncorrect))

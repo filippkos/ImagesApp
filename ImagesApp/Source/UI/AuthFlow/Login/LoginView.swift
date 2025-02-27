@@ -44,10 +44,20 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         self.prepareButton()
         self.prepareCreateAccountLabel()
         self.prepareConstraints()
+        self.setupBindings()
     }
     
     // MARK: -
     // MARK: Private
+    
+    private func setupBindings() {
+        self.viewModel.viewInputEvent
+            .observe(on: MainScheduler.instance) // Обрабатываем события в главном потоке
+            .subscribe(onNext: { [weak self] event in
+                self?.handleInput(event: event)
+            })
+            .disposed(by: self.disposeBag)
+    }
     
     private func prepareTitle() {
         self.titleStack.axis = .vertical
@@ -141,13 +151,11 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
             return
 //            self.unlock()
         case .emailError(let error):
-            self.loginField.text = error
+            self.loginField.error = error
         case .passwordError(let error):
-            return
-//            self.passwordField.error = error
+            self.passwordField.error = error
         case .generalError(let error):
             self.showWarning(message: error)
-
         }
     }
 }

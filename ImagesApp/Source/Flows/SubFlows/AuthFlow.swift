@@ -46,8 +46,11 @@ class AuthFlow: NavigationControllerContainer<NavigationControllerAuthPresenter>
         switch event {
         case .success:
             self.outputEvents?(.setImagesFlow)
+        case .failure(let error):
+            self.showWarning(message: error.localizedDescription)
         case .createAccount:
             self.pushRegisterController()
+
         }
     }
     

@@ -12,6 +12,7 @@ import FirebaseAuth
 
 enum LoginViewModelOutputEvent: ViewModelEvent {
     case success
+    case failure(Error)
     case createAccount
 }
 
@@ -25,15 +26,23 @@ enum LoginViewInputEvent {
 
 final class LoginViewModel: BaseViewModel<LoginViewModelOutputEvent> {
     
-    
     var viewInputEvent = PublishRelay<LoginViewInputEvent>()
     
     func handleLogin(email: String?, password: String?) {
         var inputIsValid = true
 
-        if let email, EmailValidator.isValid(email) { } else {
+        if let email, EmailValidator.isValid(email) {
+            self.viewInputEvent.accept(.emailError(""))
+        } else {
             inputIsValid = false
             self.viewInputEvent.accept(.emailError("Incorrect email"))
+        }
+        
+        if let password, PasswordValidator.isValid(password) {
+            self.viewInputEvent.accept(.passwordError(""))
+        } else {
+            inputIsValid = false
+            self.viewInputEvent.accept(.passwordError("Incorrect pass"))
         }
 
         if let email, let password, inputIsValid {
@@ -53,12 +62,10 @@ final class LoginViewModel: BaseViewModel<LoginViewModelOutputEvent> {
           guard let strongSelf = self else { return }
               
             if let error = error {
-                
-                return
+                self?.outputEvents?(.failure(error))
             }
 
             guard let user = authResult?.user else {
-   
                 return
             }
             
