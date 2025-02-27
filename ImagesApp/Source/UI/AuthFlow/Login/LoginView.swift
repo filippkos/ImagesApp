@@ -52,7 +52,7 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
     
     private func setupBindings() {
         self.viewModel.viewInputEvent
-            .observe(on: MainScheduler.instance) // Обрабатываем события в главном потоке
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] event in
                 self?.handleInput(event: event)
             })

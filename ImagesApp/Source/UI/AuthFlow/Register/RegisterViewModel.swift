@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import FirebaseAuth
 
 enum RegisterViewModelOutputEvent: ViewModelEvent {
@@ -13,23 +15,49 @@ enum RegisterViewModelOutputEvent: ViewModelEvent {
     case haveAnAccount
 }
 
+enum RegisterViewInputEvent {
+    case lock
+    case unlock
+    case generalError(String)
+    case emailError(String)
+    case passwordError(String)
+    case confirmPasswordError(String)
+}
+
 final class RegisterViewModel: BaseViewModel<RegisterViewModelOutputEvent> {
     
-    func handleRegister(login: String?, password: String?) {
+    var viewInputEvent = PublishRelay<RegisterViewInputEvent>()
+    
+    func handleRegister(email: String?, password: String?, confirmPassword: String?) {
         var inputIsValid = true
 
-//        if let email, EmailValidator.isValid(email) { } else {
-//            inputIsValid = false
-//            self.viewInput.accept(.emailError(L10n.Validation.emailIncorrect))
-//        }
-//
-//        if let password, PasswordValidator.isValid(password) { } else {
-//            inputIsValid = false
-//            self.viewInput.accept(.passwordError(L10n.Validation.passwordLength))
-//        }
+        if let email, EmailValidator.isValid(email) {
+            self.viewInputEvent.accept(.emailError(""))
+        } else {
+            inputIsValid = false
+            self.viewInputEvent.accept(.emailError("Incorrect email"))
+        }
+        
+        if let password, PasswordValidator.isValid(password) {
+            self.viewInputEvent.accept(.passwordError(""))
+        } else {
+            inputIsValid = false
+            self.viewInputEvent.accept(.passwordError("Incorrect pass"))
+        }
+        
+        if let confirmPassword, PasswordValidator.isValid(confirmPassword) {
+            self.viewInputEvent.accept(.passwordError(""))
+        } else {
+            inputIsValid = false
+            self.viewInputEvent.accept(.confirmPasswordError("Incorrect pass"))
+        }
+        
+        if let password, let confirmPassword, password == confirmPassword { } else {
+            self.viewInputEvent.accept(.confirmPasswordError("Passwords do not match"))
+        }
 
-        if let login, let password, inputIsValid {
-            self.registerRequest(email: login, password: password, completion: { result in
+        if let email, let password, inputIsValid {
+            self.registerRequest(email: email, password: password, completion: { result in
                 switch result {
                 case .success:
                     self.outputEvents?(.registered)

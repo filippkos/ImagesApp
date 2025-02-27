@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import FirebaseAuth
 
 final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEvent> {
@@ -43,10 +45,20 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
         self.prepareButton()
         self.prepareHaveAnAccountLabel()
         self.prepareConstraints()
+        self.setupBindings()
     }
     
     // MARK: -
     // MARK: Private
+    
+    private func setupBindings() {
+        self.viewModel.viewInputEvent
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] event in
+                self?.handleInput(event: event)
+            })
+            .disposed(by: self.disposeBag)
+    }
     
     private func prepareTitle() {
         self.titleStack.axis = .vertical
@@ -123,17 +135,18 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
     }
 
     @objc func buttonTapped() {
-        let login = self.loginField.text
+        let email = self.loginField.text
         let password = self.passwordField.text
+        let confirmPassword = self.confirmPasswordField.text
         
-        self.viewModel.handleRegister(login: login, password: password)
+        self.viewModel.handleRegister(email: email, password: password, confirmPassword: confirmPassword)
     }
     
     @objc func haveAnAccountLabelTapped(sender:UITapGestureRecognizer) {
         self.viewModel.handleHaveAnAccount()
     }
     
-    private func handleInput(event: LoginViewInputEvent) {
+    private func handleInput(event: RegisterViewInputEvent) {
         switch event {
         case .lock:
             return
@@ -142,11 +155,11 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
             return
 //            self.unlock()
         case .emailError(let error):
-            return
-//            self.loginField.error = error
+            self.loginField.error = error
         case .passwordError(let error):
-            return
-//            self.passwordField.error = error
+            self.passwordField.error = error
+        case .confirmPasswordError(let error):
+            self.confirmPasswordField.error = error
         case .generalError(let error):
             self.showWarning(message: error)
         }
