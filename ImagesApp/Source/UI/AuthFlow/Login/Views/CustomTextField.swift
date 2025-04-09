@@ -44,8 +44,11 @@ class CustomTextField: UIView {
     private let textField: UITextField = UITextField()
     private let errorLabel: UILabel = UILabel()
     
-    var placeholder: String? {
-        didSet { self.textField.placeholder = self.placeholder }
+    var placeholder: (String?, UIColor?) {
+        didSet {
+            self.textField.attributedPlaceholder = NSAttributedString(string: self.placeholder.0 ?? "",
+                                                                      attributes: [NSAttributedString.Key.foregroundColor: self.placeholder.1 ?? .gray])
+        }
     }
     
     var error: String? {

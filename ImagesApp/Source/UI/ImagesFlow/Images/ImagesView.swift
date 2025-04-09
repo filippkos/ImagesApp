@@ -60,15 +60,15 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
             target: self,
             action: #selector(self.showPicker(_:))
         )
-        addPhotoItem.tintColor = .black
+        addPhotoItem.tintColor = UIColor(named: "Colors/surface/primary")
         let deletePhotoItem = UIBarButtonItem(
             image: UIImage(systemName: "trash"),
             style: .done,
             target: self,
             action: #selector(self.handleDelete(_:))
         )
-        deletePhotoItem.tintColor = .black
-        
+        deletePhotoItem.tintColor = UIColor(named: "Colors/surface/primary")
+        self.navigationController?.navigationBar.backgroundColor = .white
         var configuration = UIButton.Configuration.filled()
         configuration.cornerStyle = .capsule
         let selectButton = UIButton(configuration: configuration)
@@ -77,9 +77,11 @@ final class ImagesView: BaseView<ImagesViewModel, ImagesViewModelOutputEvent>, U
         selectButton.addTarget(self, action: #selector(toggleSelectionMode), for: .touchUpInside)
         selectButton.frame.size.width = 100
         self.navigationItem.setRightBarButtonItems([addPhotoItem, deletePhotoItem, selectButton.toBarButtonItem()], animated: true)
+
     }
     
     private func prepareView() {
+        self.view.backgroundColor = .white
         self.collectionView.backgroundColor = .white
         self.collectionView.allowsMultipleSelection = true
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false

@@ -43,14 +43,15 @@ final class ProfileView: BaseView<ProfileViewModel, ProfileViewModelOutputEvent>
     }
     
     private func prepareView() {
+        self.view.backgroundColor = .white
         self.view.addSubview(self.stackView)
         self.stackView.axis = .vertical
         self.stackView.spacing = 10
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.loginField.placeholder = "Login"
+        self.loginField.placeholder = ("Login", nil)
         self.stackView.addArrangedSubview(self.loginField)
         self.stackView.addArrangedSubview(UIView())
-        self.uidField.placeholder = "UID"
+        self.uidField.placeholder = ("UID", nil)
         self.stackView.addArrangedSubview(self.uidField)
         self.stackView.addArrangedSubview(UIView())
         self.stackView.addArrangedSubview(self.logoutButton)

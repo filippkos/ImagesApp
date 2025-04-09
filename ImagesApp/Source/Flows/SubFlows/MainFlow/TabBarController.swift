@@ -49,6 +49,7 @@ final class TabBarController: UITabBarController {
         
         self.tabBar.tintColor = UIColor(named: "Colors/surface/primary")
         self.tabBar.unselectedItemTintColor = UIColor.gray
+        self.tabBar.backgroundColor = .white
         
         imagesFlow.tabBarItem = UITabBarItem(
             title: "Images",

@@ -66,8 +66,10 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         self.titleStack.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.text = "Login here"
         self.titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        self.titleLabel.textColor = .black
         self.descriptionLabel.text = "Welcome back you’ve been missed!"
         self.descriptionLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        self.descriptionLabel.textColor = .black
         self.titleStack.addArrangedSubview(self.titleLabel)
         self.titleStack.addArrangedSubview(self.descriptionLabel)
     }
@@ -80,9 +82,9 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         self.stackView.axis = .vertical
         self.stackView.spacing = 30
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.loginField.placeholder = "Email"
+        self.loginField.placeholder = ("Email", nil)
         self.stackView.addArrangedSubview(self.loginField)
-        self.passwordField.placeholder = "Password"
+        self.passwordField.placeholder = ("Password", nil)
         self.stackView.addArrangedSubview(self.passwordField)
         self.stackView.addArrangedSubview(self.loginButton)
         self.stackView.addArrangedSubview(self.labelContainer)
@@ -101,6 +103,7 @@ final class LoginView: BaseView<LoginViewModel, LoginViewModelOutputEvent> {
         self.createAccountLabel.text = "Create new account"
         self.createAccountLabel.isUserInteractionEnabled = true
         self.createAccountLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.createAccountLabel.textColor = .black
         let tap = UITapGestureRecognizer(target: self, action: #selector(createAccountLabelTapped(sender:)))
         self.createAccountLabel.addGestureRecognizer(tap)
         self.labelContainer.addSubview(self.createAccountLabel)

@@ -67,8 +67,10 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
         self.titleStack.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.text = "Create Account"
         self.titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        self.titleLabel.textColor = .black
         self.descriptionLabel.text = "Create an account"
         self.descriptionLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        self.descriptionLabel.textColor = .black
         self.titleStack.addArrangedSubview(self.titleLabel)
         self.titleStack.addArrangedSubview(self.descriptionLabel)
     }
@@ -81,11 +83,11 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
         self.stackView.axis = .vertical
         self.stackView.spacing = 30
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.loginField.placeholder = "Login"
+        self.loginField.placeholder = ("Login", nil)
         self.stackView.addArrangedSubview(self.loginField)
-        self.passwordField.placeholder = "Password"
+        self.passwordField.placeholder = ("Password", nil)
         self.stackView.addArrangedSubview(self.passwordField)
-        self.confirmPasswordField.placeholder = "Confirm Password"
+        self.confirmPasswordField.placeholder = ("Confirm Password", nil)
         self.stackView.addArrangedSubview(self.confirmPasswordField)
         self.stackView.addArrangedSubview(self.registerButton)
         self.stackView.addArrangedSubview(self.labelContainer)
@@ -104,6 +106,7 @@ final class RegisterView: BaseView<RegisterViewModel, RegisterViewModelOutputEve
         self.haveAnAccountLabel.text = "Already have an account"
         self.haveAnAccountLabel.isUserInteractionEnabled = true
         self.haveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.haveAnAccountLabel.textColor = .black
         let tap = UITapGestureRecognizer(target: self, action: #selector(haveAnAccountLabelTapped(sender:)))
         self.haveAnAccountLabel.addGestureRecognizer(tap)
         self.labelContainer.addSubview(self.haveAnAccountLabel)
