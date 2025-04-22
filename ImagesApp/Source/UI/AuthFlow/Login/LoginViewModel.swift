@@ -69,7 +69,24 @@ final class LoginViewModel: BaseViewModel<LoginViewModelOutputEvent> {
                 return
             }
             
+            self?.userDidLogin()
             strongSelf.outputEvents?(.success)
         }
+    }
+    
+    private func userDidLogin() {
+        let content = UNMutableNotificationContent()
+        content.title = "Successful login"
+        content.body = "User logged in"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+        
+        NotificationManager.shared.addNotification(
+            title: content.title,
+            body: content.body
+        )
     }
 }

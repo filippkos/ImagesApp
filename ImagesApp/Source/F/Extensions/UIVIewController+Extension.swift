@@ -45,8 +45,8 @@ public extension UIViewController {
     func presentConfirmationAlert(
         title: String,
         message: String,
-        confirmTitle: String = "Да",
-        cancelTitle: String = "Нет",
+        confirmTitle: String = "Ok",
+        cancelTitle: String = "Cancel",
         confirmHandler: @escaping () -> Void
     ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

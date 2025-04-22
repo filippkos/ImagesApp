@@ -46,6 +46,8 @@ final class TabBarController: UITabBarController {
     private func prepareControllers() {
         let imagesFlow = ImagesFlow(presenter: .default)
         let profileFlow = ProfileFlow(presenter: .default, services: self.services)
+        let barCodeScannerFlow = BarCodeScannerFlow(presenter: .default, services: self.services)
+        let notificationsFlow = NotificationsFlow(presenter: .default, services: self.services)
         
         self.tabBar.tintColor = UIColor(named: "Colors/surface/primary")
         self.tabBar.unselectedItemTintColor = UIColor.gray
@@ -56,16 +58,28 @@ final class TabBarController: UITabBarController {
             image: UIImage(systemName: "photo"),
             selectedImage: nil
         )
+        barCodeScannerFlow.tabBarItem = UITabBarItem(
+            title: "Scanner",
+            image: UIImage(systemName: "barcode.viewfinder"),
+            selectedImage: nil
+        )
         profileFlow.tabBarItem = UITabBarItem(
             title: "Profile",
             image: UIImage(systemName: "person"),
+            selectedImage: nil
+        )
+        notificationsFlow.tabBarItem = UITabBarItem(
+            title: "Notifications",
+            image: UIImage(systemName: "bell"),
             selectedImage: nil
         )
         
         self.setViewControllers(
             [
                 imagesFlow,
+                barCodeScannerFlow,
                 profileFlow,
+                notificationsFlow
             ],
             animated: false
         )

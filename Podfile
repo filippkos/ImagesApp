@@ -8,11 +8,13 @@ target 'ImagesApp' do
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Firebase/Analytics'
+pod 'Firebase/Messaging'
 pod 'Firebase/Storage'
 pod 'FirebaseDatabase'
 pod 'Firebase/Firestore'
 pod 'FirebaseStorage'
 pod 'Firebase/Auth'
+pod 'BarcodeScanner'
   # Pods for ImagesApp
   
   post_install do |installer|

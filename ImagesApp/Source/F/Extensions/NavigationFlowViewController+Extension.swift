@@ -20,7 +20,7 @@ extension NavigationFlowViewController {
                 alert.addAction($0)
             }
         } else {
-            alert.addAction(UIAlertAction(title: "ок", style: .cancel))
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel))
         }
         
         presenter.present(alert, animated: true)

@@ -628,6 +628,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - BarcodeScanner (5.0.0)
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -838,6 +839,7 @@ PODS:
   - RxSwift (6.6.0)
 
 DEPENDENCIES:
+  - BarcodeScanner
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
@@ -850,6 +852,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - BarcodeScanner
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -880,6 +883,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
+  BarcodeScanner: 2f5a53198eae49dc39bf61f2c1f05c04e01ff72d
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Firebase: 4453b799f72f625384dc23f412d3be92b0e3b2a0
   FirebaseAnalytics: d275f288881d4417f780115dd52c05fa9752d530
@@ -908,6 +912,6 @@ SPEC CHECKSUMS:
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
 
-PODFILE CHECKSUM: f8efdb5b7118fdbf95f729960da36043b8b68731
+PODFILE CHECKSUM: 236a75d567689ba14c858d3e259fc4a054cc5c3a
 
 COCOAPODS: 1.15.2

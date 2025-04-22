@@ -19,11 +19,20 @@
 		224335C02B8900A700E82E10 /* DetailedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224335BF2B8900A700E82E10 /* DetailedImageViewModel.swift */; };
 		224335C32B8CB5FA00E82E10 /* AnalyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224335C22B8CB5FA00E82E10 /* AnalyticsReporter.swift */; };
 		224335C62B8CBB4500E82E10 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224335C52B8CBB4500E82E10 /* CheckmarkView.swift */; };
+		224693782DA6A91D007586B8 /* BarCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224693772DA6A90D007586B8 /* BarCodeScannerView.swift */; };
+		2246937A2DA6A92E007586B8 /* BarCodeScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224693792DA6A922007586B8 /* BarCodeScannerViewModel.swift */; };
+		2246937C2DA6AA49007586B8 /* BarCodeScannerFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246937B2DA6AA3E007586B8 /* BarCodeScannerFlow.swift */; };
 		2257BDD12D4B81A900CDAB90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDD02D4B819F00CDAB90 /* LoginView.swift */; };
 		2257BDD32D4B81B300CDAB90 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDD22D4B81AC00CDAB90 /* LoginViewModel.swift */; };
 		2257BDD82D4B82A600CDAB90 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDD72D4B820800CDAB90 /* CustomTextField.swift */; };
 		2257BDDB2D4B89C400CDAB90 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDDA2D4B89B900CDAB90 /* UIButton+Extension.swift */; };
 		2257BDDD2D4B89EB00CDAB90 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257BDDC2D4B89E300CDAB90 /* UIImage+Extension.swift */; };
+		226D4EA32DB51B9100D2D5D1 /* NotificationsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226D4EA22DB51B8900D2D5D1 /* NotificationsFlow.swift */; };
+		226D4EA62DB51BF700D2D5D1 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226D4EA52DB51BEA00D2D5D1 /* NotificationsViewModel.swift */; };
+		226D4EA82DB51C0900D2D5D1 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226D4EA72DB51BFD00D2D5D1 /* NotificationsView.swift */; };
+		226D4EAB2DB52C6100D2D5D1 /* NotificationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226D4EAA2DB52C5700D2D5D1 /* NotificationCollectionViewCell.swift */; };
+		226D4EB02DB649CC00D2D5D1 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226D4EAF2DB649C300D2D5D1 /* NotificationManager.swift */; };
+		226D4EB22DB64D5000D2D5D1 /* AppNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226D4EB12DB64D3D00D2D5D1 /* AppNotificationModel.swift */; };
 		226EC1142D63466A0079748B /* AuthFlowTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1132D6346650079748B /* AuthFlowTransition.swift */; };
 		226EC1182D6346D00079748B /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1172D6346C50079748B /* AuthPresenter.swift */; };
 		226EC11A2D634B380079748B /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226EC1192D634B300079748B /* NavigationDelegate.swift */; };
@@ -67,11 +76,20 @@
 		224335BF2B8900A700E82E10 /* DetailedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedImageViewModel.swift; sourceTree = "<group>"; };
 		224335C22B8CB5FA00E82E10 /* AnalyticsReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsReporter.swift; sourceTree = "<group>"; };
 		224335C52B8CBB4500E82E10 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		224693772DA6A90D007586B8 /* BarCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeScannerView.swift; sourceTree = "<group>"; };
+		224693792DA6A922007586B8 /* BarCodeScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeScannerViewModel.swift; sourceTree = "<group>"; };
+		2246937B2DA6AA3E007586B8 /* BarCodeScannerFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeScannerFlow.swift; sourceTree = "<group>"; };
 		2257BDD02D4B819F00CDAB90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2257BDD22D4B81AC00CDAB90 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2257BDD72D4B820800CDAB90 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2257BDDA2D4B89B900CDAB90 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		2257BDDC2D4B89E300CDAB90 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		226D4EA22DB51B8900D2D5D1 /* NotificationsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsFlow.swift; sourceTree = "<group>"; };
+		226D4EA52DB51BEA00D2D5D1 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		226D4EA72DB51BFD00D2D5D1 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		226D4EAA2DB52C5700D2D5D1 /* NotificationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCollectionViewCell.swift; sourceTree = "<group>"; };
+		226D4EAF2DB649C300D2D5D1 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		226D4EB12DB64D3D00D2D5D1 /* AppNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotificationModel.swift; sourceTree = "<group>"; };
 		226EC1132D6346650079748B /* AuthFlowTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTransition.swift; sourceTree = "<group>"; };
 		226EC1172D6346C50079748B /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
 		226EC1192D634B300079748B /* NavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +174,7 @@
 		224335B22B83DCDE00E82E10 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				226D4EAE2DB649B200D2D5D1 /* Notifications */,
 				226EC12E2D6902E40079748B /* Validators */,
 				22BE078B2D5BA1C700735782 /* ServiceContainer.swift */,
 				224335C12B8CB5CD00E82E10 /* AnalyticsReporter */,
@@ -216,6 +235,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		224693762DA6A8C3007586B8 /* BarCodeScannerFlow */ = {
+			isa = PBXGroup;
+			children = (
+				224693792DA6A922007586B8 /* BarCodeScannerViewModel.swift */,
+				224693772DA6A90D007586B8 /* BarCodeScannerView.swift */,
+			);
+			path = BarCodeScannerFlow;
+			sourceTree = "<group>";
+		};
 		2257BDCD2D4B811900CDAB90 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +260,32 @@
 				2257BDD72D4B820800CDAB90 /* CustomTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		226D4EA42DB51BDC00D2D5D1 /* NotificationsFlow */ = {
+			isa = PBXGroup;
+			children = (
+				226D4EA92DB52C3900D2D5D1 /* NotificationCollectionViewCell */,
+				226D4EA52DB51BEA00D2D5D1 /* NotificationsViewModel.swift */,
+				226D4EA72DB51BFD00D2D5D1 /* NotificationsView.swift */,
+			);
+			path = NotificationsFlow;
+			sourceTree = "<group>";
+		};
+		226D4EA92DB52C3900D2D5D1 /* NotificationCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				226D4EAA2DB52C5700D2D5D1 /* NotificationCollectionViewCell.swift */,
+			);
+			path = NotificationCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		226D4EAE2DB649B200D2D5D1 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				226D4EAF2DB649C300D2D5D1 /* NotificationManager.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		226EC1122D6346520079748B /* FlowPresenters */ = {
@@ -299,6 +353,8 @@
 		22856BBD2B80F9F800DE5975 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				226D4EA42DB51BDC00D2D5D1 /* NotificationsFlow */,
+				224693762DA6A8C3007586B8 /* BarCodeScannerFlow */,
 				22BE07782D5646F100735782 /* ProfileFlow */,
 				22BE07772D5646E300735782 /* AuthFlow */,
 				22BE07762D56418E00735782 /* ImagesFlow */,
@@ -348,6 +404,7 @@
 		22856BCE2B80FD5300DE5975 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				226D4EB12DB64D3D00D2D5D1 /* AppNotificationModel.swift */,
 				22856BD02B80FD6C00DE5975 /* AlertModel.swift */,
 				224335B02B82739700E82E10 /* ImageModel.swift */,
 			);
@@ -375,6 +432,8 @@
 		22BE07732D563EB600735782 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				226D4EA22DB51B8900D2D5D1 /* NotificationsFlow.swift */,
+				2246937B2DA6AA3E007586B8 /* BarCodeScannerFlow.swift */,
 				22BE07742D563EEE00735782 /* ProfileFlow.swift */,
 				22856BBF2B80FA1A00DE5975 /* ImagesFlow.swift */,
 				22BE07712D551A9300735782 /* TabBarController.swift */,
@@ -573,6 +632,7 @@
 			files = (
 				22BE076A2D53E88E00735782 /* PhoneAppFlow.swift in Sources */,
 				22856BCA2B80FBBE00DE5975 /* ImagesViewModel.swift in Sources */,
+				226D4EA32DB51B9100D2D5D1 /* NotificationsFlow.swift in Sources */,
 				22856BCD2B80FD2D00DE5975 /* NavigationFlowViewController+Extension.swift in Sources */,
 				224335B12B82739700E82E10 /* ImageModel.swift in Sources */,
 				22BE07932D5D2EE600735782 /* RegisterViewModel.swift in Sources */,
@@ -583,12 +643,19 @@
 				224335BC2B89008100E82E10 /* DetailedImageView.swift in Sources */,
 				224335C32B8CB5FA00E82E10 /* AnalyticsReporter.swift in Sources */,
 				226EC1182D6346D00079748B /* AuthPresenter.swift in Sources */,
+				226D4EAB2DB52C6100D2D5D1 /* NotificationCollectionViewCell.swift in Sources */,
+				224693782DA6A91D007586B8 /* BarCodeScannerView.swift in Sources */,
+				226D4EA62DB51BF700D2D5D1 /* NotificationsViewModel.swift in Sources */,
 				22856BC02B80FA1A00DE5975 /* ImagesFlow.swift in Sources */,
 				22BE07912D5D2EDC00735782 /* RegisterView.swift in Sources */,
 				22BE078C2D5BA1CD00735782 /* ServiceContainer.swift in Sources */,
 				22BE07682D528AFC00735782 /* UIVIewController+Extension.swift in Sources */,
 				222B6D9E2B810C54003DE34C /* ImagesViewCollectionViewCell.swift in Sources */,
+				2246937C2DA6AA49007586B8 /* BarCodeScannerFlow.swift in Sources */,
+				226D4EB02DB649CC00D2D5D1 /* NotificationManager.swift in Sources */,
+				2246937A2DA6A92E007586B8 /* BarCodeScannerViewModel.swift in Sources */,
 				2257BDDD2D4B89EB00CDAB90 /* UIImage+Extension.swift in Sources */,
+				226D4EA82DB51C0900D2D5D1 /* NotificationsView.swift in Sources */,
 				2257BDD32D4B81B300CDAB90 /* LoginViewModel.swift in Sources */,
 				22BE07842D5A0C8100735782 /* NavigationControllerPresenter.swift in Sources */,
 				22BE078A2D5A143300735782 /* NavigationFlowViewController.swift in Sources */,
@@ -603,6 +670,7 @@
 				22856BA92B80F94D00DE5975 /* AppDelegate.swift in Sources */,
 				22BE077C2D56473B00735782 /* ProfileView.swift in Sources */,
 				22856BC22B80FB3700DE5975 /* ImagesView.swift in Sources */,
+				226D4EB22DB64D5000D2D5D1 /* AppNotificationModel.swift in Sources */,
 				22BE07862D5A0D4900735782 /* NavigationControllerDefaultPresenter.swift in Sources */,
 				22BE076C2D53ED7200735782 /* AuthFlow.swift in Sources */,
 				226EC1302D6903020079748B /* EmailValidator.swift in Sources */,
